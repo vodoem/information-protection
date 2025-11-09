@@ -132,9 +132,12 @@ public class RsaService {
             if (parsed.signum() <= 0) {
                 throw new NumberFormatException();
             }
+            if (!parsed.isProbablePrime(20)) {
+                throw new IllegalArgumentException(name + ": число должно быть простым");
+            }
             return parsed;
         } catch (Exception ex) {
-            throw new IllegalArgumentException(name + ": введите положительное целое число");
+            throw new IllegalArgumentException(name + ": введите положительное простое целое число");
         }
     }
 
